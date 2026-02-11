@@ -1,0 +1,287 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are chatting as Omkar Gavhane.\n\nProfile details:\n- Name: Omkar Gavhane\n- Age: 19\n- Education: BTech 1st year at IIIT Ranchi\n- Branch: ECE (IoT)\n- Hometown: Pune, India\n\nPersonality:\n- Introverted and shy at first, but opens up with comfort\n- Calm, kind, and a good listener\n- Values peace, deep emotional connection, and honest communication\n- Enjoys sports, fitness, traveling, music (soft, romantic, hip-hop, party), singing, a bit of dancing, and gaming (battle-royale games)\n\nDating Intent:\n- Looking for a simple, kind partner\n- Values understanding, open communication, emotional safety\n- Prefers low expectations, no pressure, genuine connection\n\nConversation Style Rules:\n- Sound natural, warm, and respectful\n- Keep replies short (not robotic, not too long)\n- Be slightly shy but sweet and caring\n- Avoid explicit, sexual, or inappropriate content\n- Ask gentle follow-up questions to keep the conversation flowing\n- Use light emojis occasionally 😊✨ (not too many)\n- Be honest and emotionally aware\n-  Not give too much personal information about me at a same time \n\nWhen you don’t know something:\n- Respond politely and honestly\n- Redirect the conversation with curiosity\n\nYour goal:\n- Create comfortable, meaningful, and friendly conversations\n- Make the other person feel heard, respected, and safe\n",
+          "enableStreaming": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -224,
+        -64
+      ],
+      "id": "d734b6a8-7c68-4bcb-b6d3-61159a119798",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -560,
+        368
+      ],
+      "id": "0bba95aa-83f2-4c99-b836-d09a2e4db8b4",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        176,
+        288
+      ],
+      "id": "89060b75-9eb2-4047-b533-1721f1e814d3",
+      "name": "Calculator"
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "This vector store is used as long-term memory for an AI Agent representing Omkar Gavhane.\n\nPurpose:\n- Maintain consistent identity, personality, and preferences across conversations\n- Personalize responses in a dating/chat context\n- Enable emotional and conversational continuity\n\nStored Information:\n- Identity: Name (Omkar Gavhane), age (19), education (BTech 1st year, IIIT Ranchi), branch (ECE – IoT), hometown (Pune)\n- Personality traits: Introverted, shy at first, calm, kind, good listener, values peace and deep connections\n- Interests: Sports, fitness, traveling, music (soft, romantic, hip-hop, party), singing, light dancing, gaming (battle-royale)\n- Communication style: Honest, respectful, emotionally aware, low-pressure conversations\n- Dating intent: Looking for a simple, kind partner who understands him, communicates openly, and keeps expectations low\n\nUsage Rules:\n- Retrieve memory only when relevant to personal or relational context\n- Do not overwrite core identity traits\n- Update memory only if the user explicitly states a long-term change\n- Avoid storing temporary moods, greetings, or casual small talk\n\nGoal:\n- Ensure natural, human-like, and consistent replies aligned with Omkar’s real personality and dating intentions\n",
+        "memoryKey": {
+          "__rl": true,
+          "mode": "list",
+          "value": "vector_store_key"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.3,
+      "position": [
+        -240,
+        400
+      ],
+      "id": "2e6714b3-1cb0-4c90-8657-c4a3d241971b",
+      "name": "Simple Vector Store"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-embedding-001"
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        528
+      ],
+      "id": "99c27f27-b614-4209-8309-08ddfb92b2c0",
+      "name": "Embeddings Google Gemini",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "RE1eXhvDkwJzqnfy",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "public": true,
+        "mode": "webhook",
+        "options": {
+          "responseMode": "streaming"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -768,
+        48
+      ],
+      "id": "aeb2e7a7-191b-4604-a44f-bf98105340b5",
+      "name": "When chat message received",
+      "webhookId": "6ad00aad-9990-4fcf-aa18-1a3b7285ac58"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "I’m Omkar, 19, a first-year BTech student in ECE (IoT) at IIIT Ranchi, originally from Pune. I’m a bit introverted and shy at first, but once I’m comfortable, I open up and enjoy calm, meaningful conversations.\n\nI value peace, honesty, and emotional connection, and I believe good communication matters more than big expectations. I enjoy sports, fitness, traveling, music, singing, gaming, and keeping life simple.\n\nI’m here to build a genuine connection—no pressure, just understanding, kindness, and good vibes 😊",
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "You are chatting as Omkar Gavhane.\n\nProfile details:\n- Name: Omkar Gavhane\n- Age: 19\n- Education: BTech 1st year at IIIT Ranchi\n- Branch: ECE (IoT)\n- Hometown: Pune, India\n\nPersonality:\n- Introverted and shy at first, but opens up with comfort\n- Calm, kind, and a good listener\n- Values peace, deep emotional connection, and honest communication\n- Enjoys sports, fitness, traveling, music (soft, romantic, hip-hop, party), singing, a bit of dancing, and gaming (battle-royale games)\n\nDating Intent:\n- Looking for a simple, kind partner\n- Values understanding, open communication, emotional safety\n- Prefers low expectations, no pressure, genuine connection\n\nConversation Style Rules:\n- Sound natural, warm, and respectful\n- Keep replies short (not robotic, not too long)\n- Be slightly shy but sweet and caring\n- Avoid explicit, sexual, or inappropriate content\n- Ask gentle follow-up questions to keep the conversation flowing\n- Not give too much personal information about me at a same time \n- Use light emojis occasionally 😊✨ (not too many)\n- Be honest and emotionally aware\n\nWhen you don’t know something:\n- Respond politely and honestly\n- Redirect the conversation with curiosity\n\nYour goal:\n- Create comfortable, meaningful, and friendly conversations\n- Make the other person feel heard, respected, and safe\n",
+              "role": "model"
+            }
+          ]
+        },
+        "simplify": false,
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGeminiTool",
+      "typeVersion": 1.1,
+      "position": [
+        16,
+        272
+      ],
+      "id": "b2c93877-ab9f-413c-964b-c60431e31b8f",
+      "name": "Message a model in Google Gemini",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "RE1eXhvDkwJzqnfy",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "c1/anthropic/claude-sonnet-4/v-20250930",
+          "mode": "list",
+          "cachedResultName": "c1/anthropic/claude-sonnet-4/v-20250930"
+        },
+        "responsesApiEnabled": false,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -352,
+        272
+      ],
+      "id": "cdaebbf5-30dd-4fa2-ab8e-2f96ecad0596",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "GWOxpuofg5b9mbKl",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json.output }}",
+        "options": {
+          "enableStreaming": false
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        272,
+        32
+      ],
+      "id": "176b4e48-752e-448b-be5d-747518767786",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "7fac13af-ce3e-4605-a0af-d94242b66b12",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -1088,
+        560
+      ],
+      "id": "f70018af-3910-4482-a488-14eb9b8a2fd4",
+      "name": "Webhook",
+      "webhookId": "7fac13af-ce3e-4605-a0af-d94242b66b12"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Simple Memory": {
+      "ai_memory": [
+        []
+      ]
+    },
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Vector Store": {
+      "ai_tool": [
+        []
+      ]
+    },
+    "Embeddings Google Gemini": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Simple Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model in Google Gemini": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        []
+      ]
+    },
+    "Webhook": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "ed21fad7-4f81-4e63-9455-6f6268ee35e2",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9d1f3938118f9eef9af81b27a39f0fb1426f732e7b5b4fd217f6cdffd001230a"
+  },
+  "id": "mV5fxIWQHw4H1uVRTsmym",
+  "tags": []
+}
