@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <!-- <link
+    href="https://cdn.jsdelivr.net/npm/genui-widget/dist/genui-widget.css"
+    rel="stylesheet"
+    /> -->
+
+    <title>Will You Be My Valentine?</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="c1"><h2>Profile</h2></div>
+            <li id="nav-about">About</li>
+            <li id="nav-gallery">Gallery</li>
+            <li id="nav-contact">Contact</li>
+        </nav>
+    </header>
+    <main>
+       <div class="info"id="about">
+            <div class="omkar">
+                <div class="name">Omkar Gavhane 💙</div>
+                <div class="oneline">Built by Sports, Softened by love, Fueled by travel</div>
+                <div class="location"><img src="location.png" alt="" height="20">Pune, India</div>
+                <div class="container">
+                    <h3>About Me</h3>
+                </br>
+                   I’m shy at first but open up with comfort, and I value calm energy and meaningful conversations.
+I enjoy sports, fitness, travel, and music—soft, romantic, hip-hop, and party vibes 🎶
+Free time usually means singing, a little dancing, or gaming and relaxing 🎮😊
+                     
+                    <div class="title">What am I looking for</div>
+                    </br>
+                    Just looking for someone kind, simple, and understanding to grow with 🌸.                                                                                                                                               
+                </div>
+                <div class="logo"><a href ="https://www.instagram.com/om_karrr_25?igsh=MndxZG1tM2c2eTJi"><img src="logo.png" height="40"></a>
+                    <a href ="https://www.instagram.com/om_karrr_25?igsh=MndxZG1tM2c2eTJi"target=_main>Instagram</a>
+                </div>
+            </div>
+            <div class="photo"></div>
+            </div>
+       </div>
+       <div class="tech" id="gallery">
+            <h1>Gallery</h1>
+            <div class="frontend"><img src="omkar1.jpeg" alt=""height="300"></div>
+            <div class="second"><img src="omkar2.jpeg" alt=""height="300"></div>
+            <div class="third"><img src="omkar3.jpeg" alt=""height="300"></div>
+       </div>
+       <div class="valentine"id="contact">
+            <h1>✨ Let’s Get to Know Each Other ✨</h1>
+            <div class="last">
+                I enjoy meaningful conversations, calm vibes, and genuine connections.
+                If you believe in honesty, kindness, and low-pressure talks
+            </div>
+            <div class="btn1" id="open-chat">
+                <div class="content">
+                    Will you be my Valentine
+                </div>
+            </div>
+       </div>
+       <div class="chat"></div>
+    </main>
+    <footer>
+        &copy 2026 Yash Singh. Built with HTML, CSS, N8N and Thesys.
+    </footer>
+</body>
+<script>
+    document.getElementById("nav-about").addEventListener("click", () => {
+        document.getElementById("about").scrollIntoView({ behavior: "smooth" });
+    });
+
+    document.getElementById("nav-gallery").addEventListener("click", () => {
+        document.getElementById("gallery").scrollIntoView({ behavior: "smooth" });
+    });
+
+    document.getElementById("nav-contact").addEventListener("click", () => {
+        document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+    });
+    
+</script>
+
+
+
+<script>
+  const valentineBtn = document.getElementById("open-chat");
+
+  valentineBtn.addEventListener("click", () => {
+    window.location.href = "chat.html";
+  });
+</script>
+
+
+</html>
+<!-- 
+<link
+href="https://cdn.jsdelivr.net/npm/genui-widget/dist/genui-widget.css"
+rel="stylesheet"/> -->
+
+<!-- <script type="module">
+    import { createChat } from "https://cdn.jsdelivr.net/npm/genui-widget/dist/genui-widget.es.js";
+
+    createChat({
+        n8n: {
+        webhookUrl: "https://yash1702.app.n8n.cloud/webhook/6ad00aad-9990-4fcf-aa18-1a3b7285ac58/chat",
+        enableStreaming: true,
+        },
+        storageType: "localstorage",
+        agentName: "Omkar",
+        formFactor: "fullscreen",
+    });
+    </script> -->
